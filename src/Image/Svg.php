@@ -1565,8 +1565,8 @@ class Svg
 		switch (strtolower($command)) {
 			case 'm': // move
 				for ($i = 0; $i < $ile_argumentow; $i+=2) {
-					$x = $a[$i][0];
-					$y = $a[$i + 1][0];
+					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
 					if ($relative) {
 						$pdfx = ($this->xbase + $x);
 						$pdfy = ($this->ybase - $y);
@@ -1598,8 +1598,8 @@ class Svg
 				break;
 			case 'l': // a simple line
 				for ($i = 0; $i < $ile_argumentow; $i+=2) {
-					$x = ($a[$i][0]);
-					$y = ($a[$i + 1][0]);
+					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
 					if ($relative) {
 						$pdfx = ($this->xbase + $x);
 						$pdfy = ($this->ybase - $y);
@@ -1621,7 +1621,7 @@ class Svg
 				break;
 			case 'h': // a very simple horizontal line
 				for ($i = 0; $i < $ile_argumentow; $i++) {
-					$x = ($a[$i][0]);
+					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
 					if ($relative) {
 						$y = 0;
 						$pdfx = ($this->xbase + $x);
@@ -1645,7 +1645,7 @@ class Svg
 				break;
 			case 'v': // the simplest line, vertical
 				for ($i = 0; $i < $ile_argumentow; $i++) {
-					$y = ($a[$i][0]);
+					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
 					if ($relative) {
 						$x = 0;
 						$pdfx = ($this->xbase + $x);
@@ -1675,10 +1675,11 @@ class Svg
 				for ($i = 0; $i < $ile_argumentow; $i += 4) {
 					$x1 = $this->lastcontrolpoints[0];
 					$y1 = $this->lastcontrolpoints[1];
-					$x2 = ($a[$i][0]);
-					$y2 = ($a[$i + 1][0]);
-					$x = ($a[$i + 2][0]);
-					$y = ($a[$i + 3][0]);
+
+					$x2 = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y2 = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
+					$x = isset($a[$i + 2][0]) ? floatval($a[$i + 2][0]) : 0;
+					$y = isset($a[$i + 3][0]) ? floatval($a[$i + 3][0]) : 0;
 					if ($relative) {
 						$pdfx1 = ($this->xbase + $x1);
 						$pdfy1 = ($this->ybase - $y1);
@@ -1718,12 +1719,12 @@ class Svg
 				break;
 			case 'c': // bezier with second vertex equal second control
 				for ($i = 0; $i < $ile_argumentow; $i += 6) {
-					$x1 = ($a[$i][0]);
-					$y1 = ($a[$i + 1][0]);
-					$x2 = ($a[$i + 2][0]);
-					$y2 = ($a[$i + 3][0]);
-					$x = ($a[$i + 4][0]);
-					$y = ($a[$i + 5][0]);
+					$x1 = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y1 = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
+					$x2 = isset($a[$i + 2][0]) ? floatval($a[$i + 2][0]) : 0;
+					$y2 = isset($a[$i + 3][0]) ? floatval($a[$i + 3][0]) : 0;
+					$x = isset($a[$i + 4][0]) ? floatval($a[$i + 4][0]) : 0;
+					$y = isset($a[$i + 5][0]) ? floatval($a[$i + 5][0]) : 0;
 
 
 					if ($relative) {
@@ -1767,10 +1768,10 @@ class Svg
 
 			case 'q': // bezier quadratic avec point de control
 				for ($i = 0; $i < $ile_argumentow; $i += 4) {
-					$x1 = ($a[$i][0]);
-					$y1 = ($a[$i + 1][0]);
-					$x = ($a[$i + 2][0]);
-					$y = ($a[$i + 3][0]);
+					$x1 = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y1 = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
+					$x = isset($a[$i + 2][0]) ? floatval($a[$i + 2][0]) : 0;
+					$y = isset($a[$i + 3][0]) ? floatval($a[$i + 3][0]) : 0;
 					if ($relative) {
 						$pdfx = ($this->xbase + $x);
 						$pdfy = ($this->ybase - $y);
@@ -1823,8 +1824,8 @@ class Svg
 					$this->lastcontrolpoints = [0, 0];
 				}
 				for ($i = 0; $i < $ile_argumentow; $i += 2) {
-					$x = ($a[$i][0]);
-					$y = ($a[$i + 1][0]);
+					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y = isset($a[$i + 1][0]) ? floatval($a[$i + 1][0]) : 0;
 
 					$x1 = $this->lastcontrolpoints[0];
 					$y1 = $this->lastcontrolpoints[1];
@@ -1875,15 +1876,15 @@ class Svg
 					$angle = ($a[$i + 2][0]); //x-axis-rotation
 					$largeArcFlag = ($a[$i + 3][0]);
 					$sweepFlag = ($a[$i + 4][0]);
-					$x2 = ($a[$i + 5][0]);
-					$y2 = ($a[$i + 6][0]);
+					$x2 = isset($a[$i + 5][0]) ? floatval($a[$i + 5][0]) : 0;
+					$y2 = isset($a[$i + 6][0]) ? floatval($a[$i + 6][0]) : 0;
 					$x1 = $this->xbase;
 					$y1 = -$this->ybase;
 					if ($relative) {
 						$x2 = $this->xbase + $x2;
 						$y2 = -$this->ybase + $y2;
-						$this->xbase += ($a[$i + 5][0]);
-						$this->ybase += -($a[$i + 6][0]);
+						$this->xbase += (isset($a[$i + 5][0]) ? floatval($a[$i + 5][0]) : 0);
+						$this->ybase += -(isset($a[$i + 6][0]) ? floatval($a[$i + 6][0]) : 0);
 					} else {
 						$this->xbase = $x2;
 						$this->ybase = -$y2;
