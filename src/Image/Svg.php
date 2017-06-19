@@ -1646,6 +1646,7 @@ class Svg
 			case 'v': // the simplest line, vertical
 				for ($i = 0; $i < $ile_argumentow; $i++) {
 					$x = isset($a[$i][0]) ? floatval($a[$i][0]) : 0;
+					$y = isset($y) ? $y : 0;
 					if ($relative) {
 						$x = 0;
 						$pdfx = ($this->xbase + $x);
